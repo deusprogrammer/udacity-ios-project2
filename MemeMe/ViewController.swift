@@ -38,33 +38,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Enable share button if imageviewer has an image
         shareButton.enabled = imageView.image != nil
         
-        // Create memeTextAttributes map
-        let memeTextAttributes = [
-            NSStrokeColorAttributeName : UIColor.blackColor(),
-            NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-            NSStrokeWidthAttributeName : -5.0
-        ]
-        
-        // Setup top text field
-        topText.defaultTextAttributes = memeTextAttributes
-        topText.textAlignment = .Center
-        topText.backgroundColor = UIColor.clearColor()
-        topText.borderStyle = .None
-        topText.text = "TOP TEXT"
-        topText.adjustsFontSizeToFitWidth = true
-        topText.autocapitalizationType = .AllCharacters
-        topText.delegate = self
-        
-        // Setup bottom text field
-        bottomText.defaultTextAttributes = memeTextAttributes
-        bottomText.textAlignment = .Center
-        bottomText.backgroundColor = UIColor.clearColor()
-        bottomText.borderStyle = .None
-        bottomText.text = "BOTTOM TEXT"
-        bottomText.adjustsFontSizeToFitWidth = true
-        bottomText.autocapitalizationType = .AllCharacters
-        bottomText.delegate = self
+        setupTextField(topText, defaultText: "TOP TEXT")
+        setupTextField(bottomText, defaultText: "BOTTOM TEXT")
         
         // Store default text for both
         defaultText[topText] = "TOP TEXT"
@@ -165,6 +140,28 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    func setupTextField(textField:UITextField, defaultText:String) {
+        // Create memeTextAttributes map
+        let memeTextAttributes = [
+            NSStrokeColorAttributeName : UIColor.blackColor(),
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
+            NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+            NSStrokeWidthAttributeName : -5.0
+        ]
+        
+        // Setup top text field
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = .Center
+        textField.backgroundColor = UIColor.clearColor()
+        textField.borderStyle = .None
+        textField.text = defaultText
+        textField.adjustsFontSizeToFitWidth = true
+        textField.autocapitalizationType = .AllCharacters
+        textField.delegate = self
+        
+        self.defaultText[textField] = defaultText
+    }
+    
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
         // Get keyboard height
         let userInfo = notification.userInfo!
@@ -214,6 +211,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             animated: true,
             completion: nil)
     }
+    
+    func presentImagePicker(sourceType: UIImagePickerControllerSourceType) {
+        imagePicker = UIImagePickerController()
+        imagePicker.sourceType = sourceType
+        imagePicker.delegate = self
+        self.presentViewController(
+            imagePicker,
+            animated: true,
+            completion: nil)
+    }
 
     @IBAction func sharePressed(sender: AnyObject) {
         image = takeScreenshot()
@@ -249,22 +256,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func pickPressed(sender: AnyObject) {
-        imagePicker = UIImagePickerController()
-        imagePicker.sourceType = .PhotoLibrary
-        imagePicker.delegate = self
-        self.presentViewController(
-            imagePicker,
-            animated: true,
-            completion: nil)
+        presentImagePicker(.PhotoLibrary)
     }
     
     @IBAction func cameraPressed(sender: AnyObject) {
-        imagePicker = UIImagePickerController()
-        imagePicker.sourceType = .Camera
-        imagePicker.delegate = self
-        self.presentViewController(
-            imagePicker,
-            animated: true,
-            completion: nil)
+        presentImagePicker(.Camera)
     }
 }
