@@ -195,6 +195,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             bottomText: bottomText.text,
             originalImage: imageView.image!,
             image: image)
+        
+        // Add it to the memes array in the Application Delegate
+        let object = UIApplication.sharedApplication().delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.memes.append(currentMeme)
     }
     
     func alert(title:String!, message:String!, buttonLabel:String!) {
