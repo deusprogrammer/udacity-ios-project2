@@ -16,6 +16,10 @@ class MemeCollectionViewController : UICollectionViewController {
     
     override func viewWillAppear(animated: Bool) {
         self.collectionView?.reloadData()
+        //let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
+        //let insets = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0)
+        //self.collectionView!.contentInset = insets;
+        //self.collectionView!.scrollIndicatorInsets = insets
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -30,9 +34,10 @@ class MemeCollectionViewController : UICollectionViewController {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CSentMemes", forIndexPath:  indexPath) as! MemeCollectionViewCell
         let meme = memes[indexPath.row]
         
+        // Set image
         cell.imageView.image = meme.image
-        cell.topText.text = meme.topText
-        cell.bottomText.text = meme.bottomText
+        cell.imageView.contentMode = .ScaleAspectFit
+        cell.imageView.backgroundColor = UIColor.blackColor()
         
         return cell
     }
