@@ -15,7 +15,7 @@ class MemeCollectionViewController : UICollectionViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        
+        self.collectionView?.reloadData()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -27,11 +27,12 @@ class MemeCollectionViewController : UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CSentMemes", forIndexPath:  indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CSentMemes", forIndexPath:  indexPath) as! MemeCollectionViewCell
         let meme = memes[indexPath.row]
-        let imageView = UIImageView(image: meme.image)
         
-        cell.backgroundView = imageView
+        cell.imageView.image = meme.image
+        cell.topText.text = meme.topText
+        cell.bottomText.text = meme.bottomText
         
         return cell
     }

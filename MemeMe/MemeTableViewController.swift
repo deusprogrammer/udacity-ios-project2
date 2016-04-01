@@ -15,7 +15,11 @@ class MemeTableViewController : UITableViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-
+        self.tableView.reloadData()
+        let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
+        let insets = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0)
+        self.tableView.contentInset = insets;
+        self.tableView.scrollIndicatorInsets = insets
     }
     
     override func viewWillDisappear(animated: Bool) {
