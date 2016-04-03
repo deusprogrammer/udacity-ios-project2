@@ -16,14 +16,7 @@ class MemeTableViewController : UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         self.tableView.reloadData()
-        //let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
-        //let insets = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0)
-        //self.tableView.contentInset = insets;
-        //self.tableView.scrollIndicatorInsets = insets
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Meme", style: .Plain, target: self, action: "createNewMeme")
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -35,7 +28,27 @@ class MemeTableViewController : UITableViewController {
         let meme = memes[indexPath.row]
         cell.textLabel?.text = meme.topText + " " + meme.bottomText
         cell.imageView?.image = meme.image
+        cell.imageView?.contentMode = .ScaleAspectFit
+        cell.imageView?.backgroundColor = UIColor.blackColor()
         
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        //Grab the DetailVC from Storyboard
+        let object: AnyObject = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailVC")
+        let detailView = object as! MemeDetailViewController
+        detailView.hidesBottomBarWhenPushed = true
+        detailView.meme = memes[indexPath.row]
+        
+        self.navigationController?.pushViewController(detailView, animated: true)
+    }
+    
+    func createNewMeme() {
+        let object:AnyObject = (self.storyboard?.instantiateViewControllerWithIdentifier("NewMemeVC"))!
+        let viewController:ViewController = object as! ViewController
+        viewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(viewController, animated: true)
+        //self.presentViewController(viewController, animated: true, completion: nil)
     }
 }

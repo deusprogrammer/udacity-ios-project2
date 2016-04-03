@@ -16,14 +16,7 @@ class MemeCollectionViewController : UICollectionViewController {
     
     override func viewWillAppear(animated: Bool) {
         self.collectionView?.reloadData()
-        //let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
-        //let insets = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0)
-        //self.collectionView!.contentInset = insets;
-        //self.collectionView!.scrollIndicatorInsets = insets
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Meme", style: .Plain, target: self, action: "createNewMeme")
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -40,5 +33,23 @@ class MemeCollectionViewController : UICollectionViewController {
         cell.imageView.backgroundColor = UIColor.blackColor()
         
         return cell
+    }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        //Grab the DetailVC from Storyboard
+        let object: AnyObject = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailVC")
+        let detailView = object as! MemeDetailViewController
+        detailView.hidesBottomBarWhenPushed = true
+        detailView.meme = memes[indexPath.row]
+        
+        self.navigationController?.pushViewController(detailView, animated: true)
+    }
+    
+    func createNewMeme() {
+        let object:AnyObject = (self.storyboard?.instantiateViewControllerWithIdentifier("NewMemeVC"))!
+        let viewController:ViewController = object as! ViewController
+        viewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(viewController, animated: true)
+        //self.presentViewController(viewController, animated: true, completion: nil)
     }
 }
