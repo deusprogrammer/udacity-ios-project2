@@ -14,11 +14,9 @@ class MemeDetailViewController : UIViewController {
     var meme:Meme?
     
     override func viewWillAppear(animated: Bool) {
-        let height = self.navigationController!.navigationBar.frame.height
-
+        // Setup image view
         imageView!.image = meme?.image
         imageView!.contentMode = .ScaleAspectFit
         imageView!.backgroundColor = UIColor.blackColor()
-        imageView?.frame.origin.y = -height
     }
 }

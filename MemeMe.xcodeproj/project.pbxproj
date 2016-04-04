@@ -18,6 +18,7 @@
 		59D2032F1C77A7CB0028AAE8 /* MemeMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D2032E1C77A7CB0028AAE8 /* MemeMeTests.swift */; };
 		59D2033A1C77A7CB0028AAE8 /* MemeMeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D203391C77A7CB0028AAE8 /* MemeMeUITests.swift */; };
 		59D203481C77CC160028AAE8 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D203471C77CC160028AAE8 /* Meme.swift */; };
+		59EAB75A1CB0C7EB00E3A2A3 /* MemeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EAB7591CB0C7EB00E3A2A3 /* MemeDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		59D203391C77A7CB0028AAE8 /* MemeMeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeMeUITests.swift; sourceTree = "<group>"; };
 		59D2033B1C77A7CB0028AAE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59D203471C77CC160028AAE8 /* Meme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
+		59EAB7591CB0C7EB00E3A2A3 /* MemeDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				59D203471C77CC160028AAE8 /* Meme.swift */,
 				59B7CABF1CAC547B00BC36AD /* MemeTableViewController.swift */,
 				59173C9F1CAC64F00016D9D4 /* MemeCollectionViewCell.swift */,
+				59EAB7591CB0C7EB00E3A2A3 /* MemeDetailView.swift */,
 			);
 			path = MemeMe;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				59D2031A1C77A7CB0028AAE8 /* AppDelegate.swift in Sources */,
 				59173C991CAC62E30016D9D4 /* MemeCollectionViewController.swift in Sources */,
 				59B7CAC01CAC547B00BC36AD /* MemeTableViewController.swift in Sources */,
+				59EAB75A1CB0C7EB00E3A2A3 /* MemeDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
